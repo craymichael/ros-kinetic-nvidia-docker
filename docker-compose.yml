@@ -1,0 +1,8 @@
+version: '1'
+
+services:
+  dev:
+    build:
+      context: .
+    image: 'craymichael/ros-kinetic-desktop-full-nvidia'
+    command: bash -c 'echo this is a base img'
