@@ -372,7 +372,7 @@ ENV TT_ROOT=/home/rosmaster/TigerTaxi \
     USERNAME=rosmaster
 
 # User setup
-RUN apt-get update && apt-get install -y sudo gnome-terminal && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y sudo gnome-terminal gdb && rm -rf /var/lib/apt/lists/*
 # Add new sudo user
 RUN useradd -m $USERNAME && \
         echo "$USERNAME:$USERNAME" | chpasswd && \
