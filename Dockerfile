@@ -365,6 +365,7 @@ RUN apt-get update && apt-get install -y \
         ros-kinetic-webkit-dependency \
         ros-kinetic-xacro \
         ros-kinetic-xmlrpcpp \
+        ros-kinetic-robot-self-filter \
         vim nano pciutils wget && \
     rm -rf /var/lib/apt/lists/*
 
