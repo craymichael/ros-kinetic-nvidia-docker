@@ -372,8 +372,9 @@ RUN apt-get update && apt-get install -y \
 ENV TT_ROOT=/home/rosmaster/TigerTaxi \
     USERNAME=rosmaster
 
-# User setup
-RUN apt-get update && apt-get install -y sudo gnome-terminal gdb && rm -rf /var/lib/apt/lists/*
+# User setup (and misc. packages)
+RUN apt-get update && apt-get install -y sudo gnome-terminal gdb python-gi python-pip && rm -rf /var/lib/apt/lists/*
+RUN pip install -U playsound
 # Add new sudo user
 RUN useradd -m $USERNAME && \
         echo "$USERNAME:$USERNAME" | chpasswd && \
