@@ -24,7 +24,8 @@ sudo nvidia-docker run -it -v </path/to/TigerTaxi>/:/home/rosmaster/TigerTaxi
 --env="DISPLAY" --user rosmaster tiger_taxi
 ```
 Take care to replace `</path/to/TigerTaxi>` with the path where you have
-cloned the TigerTaxi repo.
+cloned the TigerTaxi repo (make sure you ran
+`git submodule update --init --recursive` in the cloned TigerTaxi repo).
 
 6. (First launch only) After entering container as rosmaster,
 install caffe-enet:
