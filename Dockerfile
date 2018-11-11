@@ -373,8 +373,10 @@ ENV TT_ROOT=/home/rosmaster/TigerTaxi \
     USERNAME=rosmaster
 
 # User setup (and misc. packages)
-RUN apt-get update && apt-get install -y sudo gnome-terminal gdb python-gi python-pip && rm -rf /var/lib/apt/lists/*
-RUN pip install -U playsound
+RUN apt-get update && apt-get install -y sudo gnome-terminal gdb python-gi python-pip python3-rtree && rm -rf /var/lib/apt/lists/*
+RUN pip install -U pip && \
+        pip install -U python-dateutil && \
+        pip install -U playsound osmnx
 # Add new sudo user
 RUN useradd -m $USERNAME && \
         echo "$USERNAME:$USERNAME" | chpasswd && \
