@@ -5,6 +5,9 @@ cuda 8.0. This makes opengl work from any docker environment when used with
 [phromo](https://github.com/phromo/ros-indigo-desktop-full-nvidia) for the
 baseline. Note that this is currently supported for Linux systems only.
 
+To extend the Dockerfile (e.g. to add more ROS packages or users), take a
+look at the commented out lines at the end of file.
+
 # Installation
 1. Install docker
 2. Install nvidia-docker using instructions
