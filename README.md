@@ -1,15 +1,17 @@
 # TigerTaxi-Docker
 Extends the `osrf/ros:kinetic-desktop-full` image by adding opengl, glvnd and
 cuda 8.0. This makes opengl work from any docker environment when used with
-[nvidia-docker2](https://github.com/NVIDIA/nvidia-docker).
+[nvidia-docker2](https://github.com/NVIDIA/nvidia-docker). Thanks to
+[phromo](https://github.com/phromo/ros-indigo-desktop-full-nvidia) for the
+baseline. Note that this is currently supported for Linux systems only.
 
 # Installation
 1. Install docker
 2. Install nvidia-docker using instructions
 [here](https://github.com/NVIDIA/nvidia-docker).
 3. After cloning this repo, run
-`sudo docker build -t tiger_taxi tigertaxi-docker/`
-4. Run the following commands (to give docker permission to do X stuff):
+`sudo docker build -t <image_name> ros-kinetic-nvidia-docker/`
+4. Run the following commands to give docker permission to run on X:
 ```bash
 xhost +local:docker
 XSOCK=/tmp/.X11-unix
@@ -19,17 +21,7 @@ xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | sudo xauth -f $XAUTH nmerge -
 ```
 5. Start the container:
 ```bash
-sudo nvidia-docker run -it -v </path/to/TigerTaxi>/:/home/rosmaster/TigerTaxi
---volume=$XSOCK:$XSOCK:rw --volume=$XAUTH:$XAUTH:rw --env="XAUTHORITY=${XAUTH}"
---env="DISPLAY" --user rosmaster tiger_taxi
-```
-Take care to replace `</path/to/TigerTaxi>` with the path where you have
-cloned the TigerTaxi repo (make sure you ran
-`git submodule update --init --recursive` in the cloned TigerTaxi repo).
-
-6. (First launch only) After entering container as rosmaster,
-install caffe-enet:
-```bash
-cd TigerTaxi/tt_core/ENet/caffe-enet
-./install.sh
+sudo nvidia-docker run -it --volume=$XSOCK:$XSOCK:rw
+--volume=$XAUTH:$XAUTH:rw --env="XAUTHORITY=${XAUTH}"
+--env="DISPLAY" <image_name>
 ```
